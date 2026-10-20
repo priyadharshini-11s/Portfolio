@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b1b">
+<meta name="description" content="A modern, interactive AI Engineer and Data Scientist portfolio.">
+<title>My AI Portfolio | AI Engineer & Data Scientist</title>
+
+<style>
+:root {
+  --bg: #070b1b;
+  --text: #f4f8ff;
+  --muted: #c4d1e8;
+  --cyan: #55e7ff;
+  --blue: #568bff;
+  --pink: #ff65d8;
+  --green: #7dffcf;
+  --shadow: 0 24px 80px rgba(0,0,0,.42);
+}
+
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px clamp(18px, 5vw, 65px);
+
+  background: rgba(5, 11, 29, 0.78);
+  border-bottom: 1px solid rgba(85, 231, 255, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* Logo */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4f8ff;
+  font-size: 1.4rem;
+  font-weight: 850;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  color: #061020;
+  background: linear-gradient(
+    135deg, #55e7ff, #568bff, #ff65d8
+  );
+  box-shadow: 0 0 22px rgba(85, 231, 255, 0.25);
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  display: block;
+  padding: 11px 13px;
+  border-radius: 10px;
+
+  color: #c4d1e8;
+  font-size: 0.91rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #55e7ff;
+  background: rgba(85, 231, 255, 0.09);
+}
+
+.nav-links a:hover {
+  transform: translateY(-2px);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  bottom: 5px;
+  height: 2px;
+  border-radius: 5px;
+
+  background: linear-gradient(90deg, #55e7ff, #ff65d8);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Hamburger button */
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  border: 1px solid rgba(85, 231, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(85, 231, 255, 0.08);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 4px;
+  background: #55e7ff;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-toggle.open span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.navbar a:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid #55e7ff;
+  outline-offset: 4px;
+}
+
+/* Tablet and mobile */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 13px 20px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    padding: 12px;
+
+    background: rgba(5, 11, 29, 0.97);
+    border: 1px solid rgba(85, 231, 255, 0.25);
+    border-radius: 17px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .nav-links.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    padding: 13px 15px;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar *::before,
+  .navbar *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font: inherit; }
+
+.slideshow {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    #142b5a 0%,
+    #090f27 52%,
+    #050814 100%
+  );
+}
+
+.slideshow::before,
+.slideshow::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(10px);
+  opacity: .6;
+}
+
+.slideshow::before {
+  width: 44vw;
+  height: 44vw;
+  min-width: 280px;
+  min-height: 280px;
+  background: radial-gradient(
+    circle,
+    rgba(23,211,255,.2),
+    transparent 68%
+  );
+  left: -12%;
+  top: -18%;
+  animation: drift 12s ease-in-out infinite alternate;
+}
+
+.slideshow::after {
+  width: 48vw;
+  height: 48vw;
+  min-width: 300px;
+  min-height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(255,65,212,.16),
+    transparent 68%
+  );
+  right: -15%;
+  bottom: -30%;
+  animation: drift 14s ease-in-out infinite alternate-reverse;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px,5vw,72px) clamp(18px,5vw,72px) 105px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) scale(.985);
+  transition:
+    opacity .65s ease,
+    transform .65s ease,
+    visibility .65s;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background-image:
+    linear-gradient(
+      110deg,
+      rgba(3,9,26,.76),
+      rgba(5,13,36,.53) 52%,
+      rgba(10,6,32,.73)
+    ),
+    url("ai about.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(24,94,180,.14),
+    transparent 62%
+  );
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  z-index: 1;
+}
+
+
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: min(100%,980px);
+  margin: auto;
+}
+
+.slide.active .content {
+  animation: reveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate(6vw,5vh) scale(1.12);
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 9px 15px;
+  border: 1px solid rgba(85,231,255,.32);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(7,19,43,.72);
+  font-size: clamp(10px,1.5vw,13px);
+  font-weight: 800;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  box-shadow: 0 0 28px rgba(85,231,255,.08);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+h1, h2, h3 {
+  font-family: "Segoe UI", Inter, Arial, sans-serif;
+  font-weight: 850;
+  letter-spacing: -.035em;
+}
+
+h1 {
+  font-size: clamp(2.65rem,8vw,6.25rem);
+  line-height: 1.02;
+  margin-bottom: 20px;
+  text-wrap: balance;
+  text-shadow: 0 6px 35px rgba(0,0,0,.28);
+}
+
+h2 {
+  font-size: clamp(2rem,5.6vw,4rem);
+  line-height: 1.08;
+  margin-bottom: 25px;
+  color: #fff;
+  text-wrap: balance;
+}
+
+h3 {
+  font-size: clamp(1.05rem,2.2vw,1.35rem);
+  line-height: 1.25;
+  margin-bottom: 10px;
+  color: #e9fbff;
+}
+
+.gradient-text {
+  color: var(--cyan);
+  background: linear-gradient(
+    100deg,
+    #73f5ff 0%,
+    #65a8ff 45%,
+    #ff83e4 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: clamp(1.2rem,3.4vw,2rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #e4edff;
+}
+
+p {
+  font-size: clamp(1rem,1.8vw,1.15rem);
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 auto 13px;
+  max-width: 780px;
+}
+
+strong {
+  color: #fff;
+  font-weight: 800;
+}
+
+.hero-line {
+  width: 96px;
+  height: 4px;
+  margin: 24px auto;
+  border-radius: 9px;
+  background: linear-gradient(90deg,var(--cyan),var(--pink));
+  box-shadow: 0 0 22px rgba(85,231,255,.5);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 23px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: #061020;
+  background: linear-gradient(
+    110deg,
+    var(--cyan),
+    #87b5ff 58%,
+    #d9a0ff
+  );
+  font-size: .98rem;
+  font-weight: 850;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    0 9px 28px rgba(41,173,255,.22),
+    inset 0 1px rgba(255,255,255,.65);
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    filter .22s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow: 0 14px 34px rgba(41,173,255,.34);
+}
+
+.btn:active {
+  transform: translateY(0) scale(.98);
+}
+
+.btn:focus-visible,
+.controls button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+.btn.secondary {
+  color: #eef8ff;
+  background: rgba(10,20,46,.76);
+  border-color: rgba(143,197,255,.4);
+  box-shadow: inset 0 1px rgba(255,255,255,.08);
+}
+
+.btn.secondary:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 26px rgba(85,231,255,.15);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 16px;
+  margin-top: 25px;
+  text-align: left;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(18px,2.8vw,27px);
+  background: linear-gradient(
+    145deg,
+    rgba(19,35,71,.83),
+    rgba(8,15,37,.76)
+  );
+  border: 1px solid rgba(116,224,255,.28);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(15px);
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(var(--cyan),var(--pink));
+  opacity: .85;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(85,231,255,.7);
+  background: linear-gradient(
+    145deg,
+    rgba(24,48,91,.9),
+    rgba(11,18,43,.85)
+  );
+}
+
+.card p {
+  font-size: clamp(.9rem,1.6vw,1rem);
+  line-height: 1.65;
+  margin: 0 0 6px;
+}
+
+.card .accent {
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+.icon {
+  display: inline-grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  margin-bottom: 15px;
+  border-radius: 13px;
+  color: var(--cyan);
+  font-size: 1.25rem;
+  font-weight: 900;
+  background: rgba(85,231,255,.1);
+  border: 1px solid rgba(85,231,255,.22);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.pill {
+  border: 1px solid rgba(119,177,255,.35);
+  background: rgba(12,27,59,.76);
+  color: #eaf4ff;
+  border-radius: 999px;
+  padding: 10px 15px;
+  font-size: .92rem;
+  font-weight: 750;
+}
+
+.controls {
+  position: absolute;
+  z-index: 10;
+  bottom: max(18px,env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  padding: 9px;
+  border: 1px solid rgba(133,184,255,.24);
+  border-radius: 18px;
+  background: rgba(4,10,27,.82);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 35px rgba(0,0,0,.28);
+}
+
+.controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border-radius: 11px;
+  border: 1px solid rgba(132,177,234,.24);
+  background: rgba(255,255,255,.06);
+  color: #f3f8ff;
+  font-size: .9rem;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.controls button:hover {
+  background: rgba(85,231,255,.16);
+  border-color: rgba(85,231,255,.65);
+  transform: translateY(-1px);
+}
+
+#counter {
+  min-width: 52px;
+  text-align: center;
+  color: var(--cyan);
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+  font-size: .92rem;
+}
+
+.progress-track {
+  position: absolute;
+  z-index: 11;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(255,255,255,.08);
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--cyan),
+    var(--blue),
+    var(--pink)
+  );
+  box-shadow: 0 0 18px rgba(85,231,255,.55);
+}
+
+@media (min-width:1100px) {
+  .content { max-width: 1040px; }
+  .slide {
+    padding-left: 8vw;
+    padding-right: 8vw;
+  }
+  .cards { gap: 20px; }
+}
+
+@media (max-width:640px) {
+  .slideshow {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  .slide {
+    align-items: flex-start;
+    padding: 34px 17px 112px;
+  }
+
+  .content { margin: auto 0; }
+
+  .eyebrow {
+    margin-bottom: 17px;
+    letter-spacing: .12em;
+    padding: 8px 12px;
+  }
+
+  h1 { font-size: clamp(2.45rem,12vw,4rem); }
+
+  h2 {
+    font-size: clamp(1.9rem,9vw,2.8rem);
+    margin-bottom: 19px;
+  }
+
+  .subtitle { font-size: 1.2rem; }
+
+  p {
+    font-size: .98rem;
+    line-height: 1.68;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 11px;
+    margin-top: 19px;
+  }
+
+  .card {
+    padding: 17px 18px;
+    border-radius: 16px;
+  }
+
+  .card .icon {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 10px;
+  }
+
+  .card h3 { font-size: 1.05rem; }
+
+  .card p { font-size: .91rem; }
+
+  .button-row {
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .btn {
+    min-height: 46px;
+    padding: 12px 17px;
+    border-radius: 12px;
+    font-size: .92rem;
+  }
+
+  .controls {
+    gap: 5px;
+    padding: 6px;
+    border-radius: 15px;
+  }
+
+  .controls button {
+    min-height: 40px;
+    padding: 9px 10px;
+    font-size: .8rem;
+  }
+
+  #counter {
+    min-width: 42px;
+    font-size: .82rem;
+  }
+
+  .pill {
+    font-size: .84rem;
+    padding: 8px 11px;
+  }
+}
+
+@media (max-height:720px) and (min-width:641px) {
+  .slide {
+    padding-top: 25px;
+    padding-bottom: 90px;
+  }
+
+  .eyebrow { margin-bottom: 13px; }
+  h2 { margin-bottom: 16px; }
+  .cards { margin-top: 14px; gap: 12px; }
+  .card { padding: 16px 20px; }
+  p { line-height: 1.6; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+  
+<nav class="navbar" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">
+  
+  </a>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="navLinks"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a  href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="project.html">Projects</a></li>
+    <li><a href="certificate.html">Certificates</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+     
+<main class="slideshow" id="slideshow" aria-label="AI portfolio slideshow">
+
+
+  <!-- SLIDE 1: WELCOME -->
+  <section class="slide active" aria-label="Welcome">
+    <div class="content">
+      <div class="eyebrow">Welcome to my portfolio</div>
+
+      <h1>Hello, I'm <span class="gradient-text">priyadharshini</span></h1>
+
+      <div class="subtitle">
+        AI Engineer <span class="gradient-text">&amp;</span> Data Scientist
+      </div>
+
+      <div class="hero-line"></div>
+
+      <p>
+        Explore my academic journey, technical interests and career goals
+        through this interactive portfolio.
+      </p>
+
+      <div class="button-row">
+        <button class="btn" onclick="nextSlide()">
+          Start exploring <span aria-hidden="true">→</span>
+        </button>
+        <button class="btn secondary" onclick="togglePause()">
+          Pause auto-play
+        </button>
+      </div>
+    </div>
+  </section>
+
+  ```html
+<!-- SLIDE 2: ABOUT ME -->
+<section class="slide" aria-label="About me">
+  <div class="content">
+    <div class="eyebrow">Get to know me</div>
+
+    <h2>About <span class="gradient-text">Me</span></h2>
+
+    <p>
+      I'm a dedicated and passionate <strong>AI Engineer</strong>
+      with strong expertise in Machine Learning, Deep Learning,
+      and Natural Language Processing. I specialize in building
+      intelligent, data-driven systems that analyze complex datasets,
+      identify meaningful patterns, generate actionable insights,
+      and deliver scalable solutions to solve real-world challenges
+      across diverse domains.
+    </p>
+
+    <p>
+      My journey in AI began during my undergraduate studies in
+      Computer Science, where I discovered a deep fascination for
+      creating systems that can learn, reason, and adapt over time.
+    </p>
+
+    <p>
+      Since then, I've explored a variety of AI projects, including
+      Computer Vision, Language Understanding, and Predictive Analytics.
+      These experiences have helped me strengthen my technical abilities
+      and gain hands-on experience with classical and modern AI algorithms.
+    </p>
+
+    <div class="pills">
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Deep Learning</span>
+      <span class="pill">Natural Language Processing</span>
+      <span class="pill">Computer Vision</span>
+      <span class="pill">Predictive Analytics</span>
+     
+    </div>
+
+    <div class="hero-line"></div>
+
+  </div>
+</section>
+```
+
+ ```html
+<!-- SLIDE 3: EDUCATION -->
+<section class="slide" aria-label="Education">
+  <div class="content">
+    <div class="eyebrow">My academic journey</div>
+
+    <h2>Education &amp; <span class="gradient-text">Learning</span></h2>
+
+    <div class="cards">
+
+      <!-- B.Sc Degree -->
+      <article class="card">
+        <div class="icon" aria-hidden="true">01</div>
+
+        <h3>Bachelor of Science (B.Sc.)</h3>
+
+        <p class="accent">Computer Science</p>
+
+        <p>R.B. Gothi Jain College for Women</p>
+
+        <p>Affiliated to the University of Madras, Chennai</p>
+
+        <p class="accent">2020 – 2023</p>
+
+        <p><strong>CGPA: 7.6</strong></p>
+      </article>
+
+      <!-- M.Sc Degree -->
+      <article class="card">
+        <div class="icon" aria-hidden="true">02</div>
+
+        <h3>Master of Science (M.Sc.)</h3>
+
+        <p class="accent">Computer Science</p>
+
+        <p>R.B. Gothi Jain College for Women</p>
+
+        <p>Affiliated to the University of Madras, Chennai</p>
+
+        <p class="accent">2023 – 2025</p>
+
+        <p><strong>CGPA: 8.8</strong></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+```
+
+  <!-- SLIDE 4: CAREER GOALS -->
+  <section class="slide" aria-label="Career interests">
+    <div class="content">
+      <div class="eyebrow">Where I want to make an impact</div>
+
+      <h2>Career <span class="gradient-text">Goals</span></h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon" aria-hidden="true">✦</div>
+          <h3>AI Engineer</h3>
+          <p class="accent">Entry-level opportunity</p>
+          <p>
+            Interested in machine learning, deep learning and building
+            useful AI-powered applications.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">↗</div>
+          <h3>Data Scientist</h3>
+          <p class="accent">Professional interest</p>
+          <p>
+            Interested in data analysis, predictive modeling and
+            transforming data into actionable insights.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: TECHNICAL INTERESTS -->
+  <section class="slide" aria-label="Technical interests">
+    <div class="content">
+      <div class="eyebrow">Technologies I enjoy exploring</div>
+
+      <h2>Technical <span class="gradient-text">Interests</span></h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon" aria-hidden="true">ML</div>
+          <h3>Machine Learning</h3>
+          <p>Learning from data to identify patterns and make predictions.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">AI</div>
+          <h3>Deep Learning</h3>
+          <p>Exploring neural networks and modern intelligent systems.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">NLP</div>
+          <h3>Natural Language Processing</h3>
+          <p>Helping computers process and understand human language.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">DS</div>
+          <h3>Data Science</h3>
+          <p>Discovering insights through data analysis and visualization.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: LOCATION AND LANGUAGES -->
+  <section class="slide" aria-label="Location and languages">
+    <div class="content">
+      <div class="eyebrow">A little more about me</div>
+
+      <h2>Beyond the <span class="gradient-text">Code</span></h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon" aria-hidden="true">⌖</div>
+          <h3>Location</h3>
+          <p class="accent">Chennai, Tamil Nadu</p>
+          <p>India</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">Aa</div>
+          <h3>Languages</h3>
+          <p>English</p>
+          <p>Tamil</p>
+        </article>
+      </div>
+
+      <div class="hero-line"></div>
+
+      <p><strong>Thank you for exploring my portfolio!</strong></p>
+
+      <div class="button-row">
+        <button class="btn" onclick="goToSlide(0)">↻ Start again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDESHOW CONTROLS -->
+  <nav class="controls" aria-label="Slideshow controls">
+    <button onclick="prevSlide()" aria-label="Previous slide">
+      ← <span class="desktop-label">Previous</span>
+    </button>
+
+    <span id="counter" aria-live="polite">1 / 6</span>
+
+    <button onclick="togglePause()" id="pauseBtn" aria-label="Pause slideshow">
+      Ⅱ Pause
+    </button>
+
+    <button onclick="nextSlide()" aria-label="Next slide">
+      <span class="desktop-label">Next</span> →
+    </button>
+  </nav>
+
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress" id="progress"></div>
+  </div>
+
+</main>
+
+<script>
+const slides = [...document.querySelectorAll(".slide")];
+const counter = document.getElementById("counter");
+const pauseBtn = document.getElementById("pauseBtn");
+const progress = document.getElementById("progress");
+
+const duration = 6500;
+
+let current = 0;
+let paused = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+let timer = null;
+let startedAt = 0;
+let remaining = duration;
+let progressFrame = null;
+
+function updateSlide(index) {
+  slides[current].classList.remove("active");
+
+  current = (index + slides.length) % slides.length;
+
+  slides[current].classList.add("active");
+  slides[current].scrollTop = 0;
+
+  counter.textContent = `${current + 1} / ${slides.length}`;
+
+  restartTimer();
+}
+
+function nextSlide() {
+  updateSlide(current + 1);
+}
+
+function prevSlide() {
+  updateSlide(current - 1);
+}
+
+function goToSlide(index) {
+  updateSlide(index);
+}
+
+function stopTimer() {
+  if (timer) clearTimeout(timer);
+
+  timer = null;
+
+  if (progressFrame) {
+    cancelAnimationFrame(progressFrame);
+  }
+
+  progressFrame = null;
+}
+
+function animateProgress(from, to, ms) {
+  const start = performance.now();
+
+  function tick(now) {
+    const fraction = Math.min((now - start) / ms, 1);
+
+    progress.style.width =
+      `${from + (to - from) * fraction}%`;
+
+    if (
+      fraction < 1 &&
+      !paused &&
+      !document.hidden
+    ) {
+      progressFrame = requestAnimationFrame(tick);
+    }
+  }
+
+  progressFrame = requestAnimationFrame(tick);
+}
+
+function startTimer() {
+  stopTimer();
+
+  pauseBtn.innerHTML = "Ⅱ Pause";
+  pauseBtn.setAttribute("aria-label", "Pause slideshow");
+
+  if (paused || document.hidden) {
+    pauseBtn.innerHTML = "▶ Play";
+    pauseBtn.setAttribute("aria-label", "Play slideshow");
+    return;
+  }
+
+  remaining = duration;
+  startedAt = performance.now();
+
+  progress.style.width = "0%";
+
+  animateProgress(0, 100, remaining);
+
+  timer = setTimeout(nextSlide, remaining);
+}
+
+function restartTimer() {
+  startTimer();
+}
+
+function togglePause() {
+  if (paused) {
+    paused = false;
+    startTimer();
+  } else {
+    if (timer) {
+      remaining = Math.max(
+        0,
+        remaining - (performance.now() - startedAt)
+      );
+    }
+
+    paused = true;
+    stopTimer();
+
+    pauseBtn.innerHTML = "▶ Play";
+    pauseBtn.setAttribute("aria-label", "Play slideshow");
+  }
+}
+
+/* Keyboard navigation */
+document.addEventListener("keydown", event => {
+  if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+  if (event.key === "ArrowRight") {
+    nextSlide();
+  } else if (event.key === "ArrowLeft") {
+    prevSlide();
+  } else if (
+    event.code === "Space" &&
+    !["BUTTON", "INPUT", "TEXTAREA"].includes(
+      document.activeElement.tagName
+    )
+  ) {
+    event.preventDefault();
+    togglePause();
+  }
+});
+
+/* Pause while the browser tab is hidden */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopTimer();
+  } else if (!paused) {
+    startTimer();
+  }
+});
+
+/* Mobile swipe navigation */
+let touchStartX = 0;
+
+document.getElementById("slideshow").addEventListener(
+  "touchstart",
+  event => {
+    touchStartX = event.changedTouches[0].screenX;
+  },
+  { passive: true }
+);
+
+document.getElementById("slideshow").addEventListener(
+  "touchend",
+  event => {
+    const delta =
+      event.changedTouches[0].screenX - touchStartX;
+
+    if (Math.abs(delta) > 65) {
+      if (delta < 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  },
+  { passive: true }
+);
+
+/* Respect reduced-motion preferences */
+if (paused) {
+  pauseBtn.innerHTML = "▶ Play";
+  pauseBtn.setAttribute("aria-label", "Play slideshow");
+}
+
+startTimer();
+</script>
+
+</body>
+</html>

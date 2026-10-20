@@ -1,0 +1,1042 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b1b">
+
+<title>Skills | AI Engineer Portfolio</title>
+
+<style>
+:root {
+  --bg: #070b1b;
+  --text: #f4f8ff;
+  --muted: #c4d1e8;
+  --cyan: #55e7ff;
+  --blue: #568bff;
+  --pink: #ff65d8;
+  --green: #7dffcf;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+.page-background {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(3, 8, 25, 0.91),
+      rgba(5, 13, 36, 0.79),
+      rgba(10, 6, 32, 0.88)
+    ),
+    url("your-background-image.jpg") center / cover no-repeat;
+}
+
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -4;
+  pointer-events: none;
+}
+
+.page-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 15% 25%,
+      rgba(85, 231, 255, 0.15),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(255, 101, 216, 0.12),
+      transparent 35%
+    );
+}
+
+/* ===== NAVIGATION ===== */
+
+.navbar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px clamp(18px, 5vw, 65px);
+  background: rgba(5, 11, 29, 0.86);
+  border-bottom: 1px solid rgba(85, 231, 255, 0.2);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  color: #061020;
+  background: linear-gradient(
+    135deg,
+    var(--cyan),
+    var(--blue),
+    var(--pink)
+  );
+  box-shadow: 0 0 25px rgba(85, 231, 255, 0.3);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 11px 13px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--cyan);
+  background: rgba(85, 231, 255, 0.1);
+}
+
+.menu-toggle {
+  display: none;
+  width: 43px;
+  height: 43px;
+  border: 1px solid rgba(85, 231, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(85, 231, 255, 0.08);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--cyan);
+  transition: 0.3s;
+}
+
+.menu-toggle.open span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== MAIN SECTION ===== */
+
+.skills-section {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  padding: 75px clamp(20px, 6vw, 85px) 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.section-heading {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeUp 0.9s ease both;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(85, 231, 255, 0.35);
+  border-radius: 50px;
+  color: var(--cyan);
+  background: rgba(7, 19, 43, 0.7);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-wrap: balance;
+}
+
+.gradient-text {
+  color: var(--cyan);
+  background: linear-gradient(
+    100deg,
+    #73f5ff,
+    #65a8ff 48%,
+    #ff83e4
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-heading > p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+/* ===== SKILL CARDS GRID ===== */
+
+.skills-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  perspective: 1200px;
+}
+
+/* ===== INDIVIDUAL SKILL CARD ===== */
+
+.skill-card {
+  --glow: var(--cyan);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 390px;
+  padding: 32px 26px;
+  overflow: hidden;
+
+  border: 1px solid rgba(116, 224, 255, 0.27);
+  border-radius: 24px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(18, 36, 73, 0.82),
+    rgba(7, 14, 35, 0.88)
+  );
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  animation: cardEntrance 0.8s ease both;
+}
+
+.skill-card:nth-child(1) {
+  --glow: var(--cyan);
+  animation-delay: 0.05s;
+}
+
+.skill-card:nth-child(2) {
+  --glow: var(--pink);
+  animation-delay: 0.15s;
+}
+
+.skill-card:nth-child(3) {
+  --glow: var(--green);
+  animation-delay: 0.25s;
+}
+
+.skill-card:nth-child(4) {
+  --glow: var(--blue);
+  animation-delay: 0.35s;
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -2;
+  opacity: 0;
+
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--glow),
+    transparent 60%
+  );
+
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.skill-card::after {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -60%;
+  width: 65%;
+  height: 250%;
+  z-index: -1;
+
+  transform: rotate(28deg);
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.045),
+    transparent
+  );
+
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.skill-card:hover {
+  border-color: var(--glow);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.4),
+    0 0 25px color-mix(in srgb, var(--glow) 18%, transparent);
+}
+
+.skill-card:hover::before {
+  opacity: 0.12;
+}
+
+.skill-card:hover::after {
+  left: 130%;
+}
+
+.skill-card > * {
+  transform: translateZ(25px);
+}
+
+/* ===== SKILL ICON ===== */
+
+.skill-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 76px;
+  min-height: 76px;
+  margin-bottom: 25px;
+  padding: 8px;
+
+  border-radius: 21px;
+  color: var(--glow);
+  font-size: 1.45rem;
+  font-weight: 900;
+  text-align: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(85, 231, 255, 0.16),
+    rgba(86, 139, 255, 0.07)
+  );
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--glow) 45%,
+    transparent
+  );
+
+  box-shadow:
+    0 12px 25px rgba(0, 0, 0, 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.1);
+
+  animation: floatIcon 4s ease-in-out infinite;
+}
+
+.skill-card:nth-child(2) .skill-icon {
+  animation-delay: -1.3s;
+}
+
+.skill-card:nth-child(3) .skill-icon {
+  animation-delay: -2.2s;
+}
+
+.skill-card:nth-child(4) .skill-icon {
+  animation-delay: -0.8s;
+}
+
+/* ===== SKILL CONTENT ===== */
+
+.skill-label {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 13px;
+
+  color: var(--glow);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.skill-card h2 {
+  color: #f3f8ff;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.skill-card p {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.skill-tags span {
+  padding: 8px 10px;
+  border: 1px solid rgba(132, 177, 234, 0.22);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.045);
+  color: #e6f3ff;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.4;
+
+  transition:
+    border-color 0.3s,
+    background 0.3s,
+    transform 0.3s;
+}
+
+.skill-tags span:hover {
+  border-color: var(--glow);
+  background: rgba(85, 231, 255, 0.09);
+  transform: translateY(-2px);
+}
+
+/* ===== GLOW ORB ===== */
+
+.orb {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  right: -65px;
+  bottom: -70px;
+
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(80px);
+  opacity: 0.12;
+
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.skill-card:hover .orb {
+  opacity: 0.28;
+}
+
+/* ===== FOOTER ===== */
+
+.skills-footer {
+  margin-top: 38px;
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  animation: fadeUp 1s 0.4s both;
+}
+
+.skills-footer strong {
+  color: var(--cyan);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0) translateZ(25px);
+  }
+
+  50% {
+    transform: translateY(-9px) translateZ(35px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotateX(8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 1000px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .skills-section {
+    padding-top: 60px;
+  }
+
+  .skill-card {
+    padding: 28px 22px;
+  }
+}
+
+/* ===== MOBILE NAVIGATION ===== */
+
+@media (max-width: 760px) {
+  .navbar {
+    padding: 13px 18px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 14px;
+    right: 14px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    padding: 12px;
+
+    background: rgba(5, 11, 29, 0.98);
+    border: 1px solid rgba(85, 231, 255, 0.25);
+    border-radius: 17px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s,
+      visibility 0.25s,
+      transform 0.25s;
+  }
+
+  .nav-links.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
+    padding: 13px 15px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 20px;
+  }
+
+  .skill-card {
+    grid-column: auto;
+    min-height: 340px;
+  }
+
+  .skills-section {
+    padding: 55px 18px 45px;
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .section-heading > p {
+    font-size: 1rem;
+  }
+
+  h1 {
+    letter-spacing: -1px;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+
+@media (max-width: 380px) {
+  .nav-logo {
+    font-size: 1.1rem;
+  }
+
+  .skill-card {
+    padding: 25px 20px;
+  }
+
+  .skill-tags span {
+    font-size: 0.74rem;
+    padding: 7px 8px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<video
+  class="background-video"
+  autoplay
+  muted
+  loop
+  playsinline
+  aria-hidden="true"
+>
+  <source src="skills2.mp4" type="video/mp4">
+</video>
+
+<!-- BACKGROUND OVERLAY -->
+<div class="page-background" aria-hidden="true"></div>
+
+<!-- NAVIGATION -->
+<nav class="navbar" aria-label="Main navigation">
+
+  <a href="index.html" class="nav-logo" aria-label="Portfolio home">
+    
+    
+  </a>
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="navLinks"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li>
+      <a class="active" href="skills.html" aria-current="page">
+        Skills
+      </a>
+    </li>
+    <li><a href="project.html">Projects</a></li>
+    <li><a href="certificate.html">Certificates</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+</nav>
+
+<!-- SKILLS SECTION -->
+<main class="skills-section">
+
+  <header class="section-heading">
+
+    <div class="eyebrow">My Technical Expertise</div>
+
+    <h1>
+      Skills &amp; <span class="gradient-text">Technologies</span>
+    </h1>
+
+    <p>
+      Exploring intelligent systems, transforming complex data into
+      meaningful insights, and building scalable AI-powered solutions
+      for real-world challenges.
+    </p>
+
+  </header>
+
+  <!-- FOUR SKILL CARDS -->
+  <section class="skills-grid" aria-label="Technical skills">
+
+    <!-- CARD 1: DATA SCIENCE & ANALYTICS -->
+    <article class="skill-card">
+
+      <div class="skill-icon" aria-hidden="true">DS</div>
+
+      <span class="skill-label">Data Intelligence</span>
+
+      <h2>Data Science &amp; Analytics</h2>
+
+      <p>
+        Transforming complex datasets into meaningful insights through
+        statistical analysis, data cleaning, exploratory data analysis,
+        visualization, and predictive modeling to support data-driven
+        decisions.
+      </p>
+
+      <div class="skill-tags">
+        <span>Python</span>
+        <span>SQL</span>
+        <span>Pandas</span>
+        <span>NumPy</span>
+        <span>Statistics</span>
+        <span>EDA</span>
+        <span>Power BI</span>
+        <span>Tableau</span>
+      </div>
+
+      <div class="orb" aria-hidden="true"></div>
+
+    </article>
+
+    <!-- CARD 2: MACHINE LEARNING & DEEP LEARNING -->
+    <article class="skill-card">
+
+      <div class="skill-icon" aria-hidden="true">ML/DL</div>
+
+      <span class="skill-label">Intelligent Models</span>
+
+      <h2>Machine Learning &amp; Deep Learning</h2>
+
+      <p>
+        Building predictive models, classification systems, neural
+        networks, and computer vision solutions using machine learning
+        and deep learning techniques to solve real-world problems.
+      </p>
+
+      <div class="skill-tags">
+        <span>Scikit-learn</span>
+        <span>Regression</span>
+        <span>Clustering</span>
+        <span>TensorFlow</span>
+        <span>Keras</span>
+        <span>PyTorch</span>
+        <span>CNN</span>
+        <span>Transfer Learning</span>
+      </div>
+
+      <div class="orb" aria-hidden="true"></div>
+
+    </article>
+
+    <!-- CARD 3: GENERATIVE AI, NLP & RAG -->
+    <article class="skill-card">
+
+      <div class="skill-icon" aria-hidden="true">AI</div>
+
+      <span class="skill-label">Generative Intelligence</span>
+
+      <h2>Generative AI, NLP &amp; RAG</h2>
+
+      <p>
+        Developing intelligent assistants and document question-answering
+        systems using large language models, natural language processing,
+        and retrieval-augmented generation for context-aware responses.
+      </p>
+
+      <div class="skill-tags">
+        <span>NLP</span>
+        <span>Transformers</span>
+        <span>BERT</span>
+        <span>LLMs</span>
+        <span>RAG</span>
+        <span>LangChain</span>
+        <span>Hugging Face</span>
+        <span>ChromaDB</span>
+        <span>FAISS</span>
+      </div>
+
+      <div class="orb" aria-hidden="true"></div>
+
+    </article>
+
+    <!-- CARD 4: AI ENGINEERING & MODEL DEPLOYMENT -->
+    <article class="skill-card">
+
+      <div class="skill-icon" aria-hidden="true">MLOps</div>
+
+      <span class="skill-label">Production AI</span>
+
+      <h2>AI Engineering &amp; Model Deployment</h2>
+
+      <p>
+        Turning trained machine learning models into production-ready
+        applications through API development, model serving, version
+        control, and cloud deployment technologies.
+      </p>
+
+      <div class="skill-tags">
+        <span>Flask</span>
+        <span>FastAPI</span>
+        <span>REST APIs</span>
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>AWS</span>
+      </div>
+
+      <div class="orb" aria-hidden="true"></div>
+
+    </article>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="skills-footer">
+    <p>
+      <strong>Learn. Build. Innovate.</strong><br>
+      Turning AI concepts into meaningful solutions.
+    </p>
+  </footer>
+
+</main>
+
+<script>
+/* ===== MOBILE MENU ===== */
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMenu(returnFocus = false) {
+  navLinks.classList.remove("show");
+  menuToggle.classList.remove("open");
+
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+
+  if (returnFocus) {
+    menuToggle.focus();
+  }
+}
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("show");
+
+  menuToggle.classList.toggle("open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    closeMenu();
+  });
+});
+
+/* Close menu with Escape */
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && navLinks.classList.contains("show")) {
+    closeMenu(true);
+  }
+});
+
+/* Close mobile menu when returning to desktop layout */
+
+const mobileQuery = window.matchMedia("(max-width: 760px)");
+
+mobileQuery.addEventListener("change", event => {
+  if (!event.matches) {
+    closeMenu();
+  }
+});
+
+/* ===== 3D CARD TILT ===== */
+
+const cards = document.querySelectorAll(".skill-card");
+
+const supportsFinePointer = window.matchMedia(
+  "(hover: hover) and (pointer: fine)"
+).matches;
+
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+if (supportsFinePointer && !reduceMotion) {
+
+  cards.forEach(card => {
+
+    card.addEventListener("pointermove", event => {
+
+      const rect = card.getBoundingClientRect();
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateY = ((x - centerX) / centerX) * 7;
+      const rotateX = ((centerY - y) / centerY) * 7;
+
+      card.style.transform =
+        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+
+      card.style.setProperty(
+        "--mouse-x",
+        `${(x / rect.width) * 100}%`
+      );
+
+      card.style.setProperty(
+        "--mouse-y",
+        `${(y / rect.height) * 100}%`
+      );
+
+    });
+
+    card.addEventListener("pointerleave", () => {
+
+      card.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+
+      card.style.setProperty("--mouse-x", "50%");
+      card.style.setProperty("--mouse-y", "50%");
+
+    });
+
+  });
+
+}
+
+/* ===== VIDEO PERFORMANCE ===== */
+
+const backgroundVideo = document.querySelector(".background-video");
+
+if (backgroundVideo) {
+
+  if (reduceMotion) {
+    backgroundVideo.pause();
+  }
+
+  document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+      backgroundVideo.pause();
+    } else if (!reduceMotion) {
+      backgroundVideo.play().catch(() => {});
+    }
+
+  });
+
+}
+</script>
+
+</body>
+</html>
+```

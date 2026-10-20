@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications | Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cyan: #55e7ff;
+      --blue: #5685ff;
+      --pink: #ff55ce;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #050b1d;
+      color: var(--text);
+    }
+
+    /* ===== NAVIGATION ===== */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 5%;
+      background: rgba(5, 11, 29, 0.92);
+      border-bottom: 1px solid rgba(85, 231, 255, 0.3);
+      backdrop-filter: blur(15px);
+    }
+
+    .nav-logo {
+      color: var(--cyan);
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      text-shadow: 0 0 12px rgba(85, 231, 255, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 10px 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+      background: rgba(85, 231, 255, 0.12);
+      box-shadow: 0 0 15px rgba(85, 231, 255, 0.12);
+    }
+
+    /* ===== CERTIFICATION SECTION ===== */
+
+    .certifications {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      padding: 75px 7%;
+      overflow: hidden;
+      background: #050b1d;
+    }
+
+    /* Background video */
+
+    .bg-video {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.48;
+      pointer-events: none;
+    }
+
+    /* Dark overlay over video */
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        135deg,
+        rgba(5, 11, 29, 0.87),
+        rgba(9, 20, 48, 0.76),
+        rgba(5, 11, 29, 0.91)
+      );
+      pointer-events: none;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    /* EFFECT 1: Neon glow title */
+
+    .section-heading h1 {
+      display: inline-block;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--cyan);
+      text-shadow:
+        0 0 8px rgba(85, 231, 255, 0.8),
+        0 0 22px rgba(85, 231, 255, 0.5);
+      animation: neonGlow 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      from {
+        text-shadow: 0 0 8px rgba(85, 231, 255, 0.5);
+      }
+      to {
+        text-shadow:
+          0 0 12px var(--cyan),
+          0 0 30px rgba(85, 231, 255, 0.65),
+          0 0 45px rgba(86, 133, 255, 0.35);
+      }
+    }
+
+    /* EFFECT 2: Gradient animated letters */
+
+    .section-heading p {
+      margin-top: 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        var(--cyan),
+        var(--pink),
+        #ffffff
+      );
+      background-size: 250% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: gradientText 5s linear infinite;
+    }
+
+    @keyframes gradientText {
+      to {
+        background-position: 250% center;
+      }
+    }
+
+    /* Certification cards */
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    .cert-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 27px;
+      min-width: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(9, 20, 43, 0.76);
+      border: 1px solid rgba(85, 231, 255, 0.25);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+
+    /* EFFECT 3: Card hover + glowing border */
+
+    .cert-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--cyan),
+        var(--pink),
+        transparent
+      );
+      transition: left 0.6s ease;
+    }
+
+    .cert-card:hover::before {
+      left: 100%;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-9px);
+      border-color: var(--cyan);
+      box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(85, 231, 255, 0.15);
+    }
+
+    .cert-icon {
+      font-size: 34px;
+      margin-bottom: 17px;
+    }
+
+    .cert-card h2 {
+      font-size: 19px;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .issuer {
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .tags span {
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #dbeafe;
+      background: rgba(85, 231, 255, 0.08);
+      border: 1px solid rgba(85, 231, 255, 0.2);
+      border-radius: 20px;
+    }
+
+    .cert-btn {
+      display: block;
+      margin-top: auto;
+      padding: 12px 15px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      color: #061020;
+      background: linear-gradient(100deg, var(--cyan), #8db7ff);
+      transition: 0.3s ease;
+    }
+
+    .cert-btn:hover {
+      color: white;
+      background: linear-gradient(100deg, #2478ff, #b52dff);
+      box-shadow: 0 0 20px rgba(85, 231, 255, 0.3);
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+
+    @media (max-width: 1000px) {
+      .cert-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 14px 5%;
+      }
+
+      .nav-links {
+        gap: 3px;
+      }
+
+      .nav-links a {
+        padding: 9px 8px;
+        font-size: 12px;
+      }
+
+      .certifications {
+        padding: 50px 5%;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .cert-card {
+        padding: 23px;
+      }
+
+      .section-heading h1 {
+        letter-spacing: 1px;
+      }
+    }
+
+    /* Respect reduced-motion preferences */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo"></a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="certifications.html">Certificates</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== CERTIFICATIONS ===== -->
+
+  <section class="certifications" id="certifications">
+
+    <!-- Background video: place certificate.mp4 beside this HTML file -->
+    <video class="bg-video" autoplay muted loop playsinline
+           aria-hidden="true" preload="metadata">
+      <source src="certificte.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-overlay"></div>
+
+    <div class="section-heading">
+      <h1>Certifications</h1>
+      <p>Professional credentials and achievements</p>
+    </div>
+
+    <div class="cert-grid">
+
+      <article class="cert-card">
+        <div class="cert-icon">🏆</div>
+        <h2>Course Completion Certificate (CDS)</h2>
+        <p class="issuer">DataMites</p>
+        <div class="tags">
+          <span>Data Science</span>
+          <span>Analytics</span>
+          <span>Statistics</span>
+        </div>
+        <a href="certificates/datamites-cds.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">🤖</div>
+        <h2>Course Completion Certificate (AI Expert)</h2>
+        <p class="issuer">DataMites</p>
+        <div class="tags">
+          <span>AI Expert</span>
+          <span>Machine Learning</span>
+          <span>Deep Learning</span>
+        </div>
+        <a href="certificates/datamites-ai-expert.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">📜</div>
+        <h2>Professional Foundation (CDS)</h2>
+        <p class="issuer">IABAC</p>
+        <div class="tags">
+          <span>Foundation</span>
+          <span>Data Science</span>
+        </div>
+        <a href="certificates/iabac-foundation-cds.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">📊</div>
+        <h2>Certified Data Scientist</h2>
+        <p class="issuer">IABAC</p>
+        <div class="tags">
+          <span>Data Scientist</span>
+          <span>Analytics</span>
+          <span>Certification</span>
+        </div>
+        <a href="certificates/iabac-data-scientist.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">🧠</div>
+        <h2>Artificial Intelligence Expert</h2>
+        <p class="issuer">IABAC</p>
+        <div class="tags">
+          <span>Artificial Intelligence</span>
+          <span>AI Expert</span>
+        </div>
+        <a href="certificates/iabac-ai-expert.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">💻</div>
+        <h2>Data Science Certification</h2>
+        <p class="issuer">NASSCOM</p>
+        <div class="tags">
+          <span>Data Science</span>
+          <span>Analytics</span>
+        </div>
+        <a href="certificates/nasscom-data-science.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+      <article class="cert-card">
+        <div class="cert-icon">⚡</div>
+        <h2>AI Engineer</h2>
+        <p class="issuer">NASSCOM</p>
+        <div class="tags">
+          <span>Artificial Intelligence</span>
+          <span>AI Engineering</span>
+        </div>
+        <a href="certificates/nasscom-ai-engineer.pdf"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-btn">View Certificate ↗</a>
+      </article>
+
+    </div>
+  </section>
+
+</body>
+</html>

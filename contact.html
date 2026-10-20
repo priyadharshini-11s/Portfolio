@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>Priyadharshini | Let's Connect</title>
+
+<style>
+:root {
+  --bg: #050816;
+  --cyan: #48eaff;
+  --pink: #f08bff;
+  --text: #f5f7ff;
+  --muted: #b6c2dc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== NAVIGATION ===== */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 76px;
+  padding: 15px clamp(18px, 5vw, 65px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  z-index: 100;
+  background: rgba(5, 11, 29, 0.78);
+  border-bottom: 1px solid rgba(72, 234, 255, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.nav-logo {
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.nav-logo span {
+  color: var(--cyan);
+  text-shadow: 0 0 15px rgba(72, 234, 255, 0.7);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav-links a {
+  display: block;
+  padding: 11px 13px;
+  color: #d3dcef;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--cyan);
+  background: rgba(72, 234, 255, 0.1);
+  border-color: rgba(72, 234, 255, 0.2);
+  text-shadow: 0 0 12px rgba(72, 234, 255, 0.5);
+}
+
+.menu-toggle {
+  display: none;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border: 1px solid rgba(72, 234, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(72, 234, 255, 0.08);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 19px;
+  height: 2px;
+  margin: 5px auto;
+  background: var(--cyan);
+  transition: 0.3s;
+}
+
+.menu-toggle.open span:first-child {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:last-child {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: 125px 20px 35px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.contact-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 15% 25%,
+      rgba(30, 110, 180, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(3, 8, 28, 0.91),
+      rgba(10, 12, 35, 0.78),
+      rgba(3, 8, 28, 0.93)
+    );
+}
+
+.contact-container {
+  position: relative;
+  width: min(900px, 100%);
+  margin: auto;
+  text-align: center;
+  animation: fadeUp 0.9s ease both;
+}
+
+.section-tag {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: clamp(38px, 7vw, 68px);
+  letter-spacing: -2px;
+}
+
+h1 span {
+  color: var(--cyan);
+  text-shadow: 0 0 25px rgba(72, 234, 255, 0.6);
+}
+
+.intro {
+  max-width: 580px;
+  margin: 0 auto 35px;
+  color: #c0c9df;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ===== CONTACT CARDS ===== */
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 35px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  padding: 20px 15px;
+  text-align: left;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(72, 234, 255, 0.3);
+  border-radius: 18px;
+  background: rgba(15, 24, 52, 0.62);
+  backdrop-filter: blur(14px);
+  transition: transform 0.3s, border-color 0.3s,
+              box-shadow 0.3s, background 0.3s;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--cyan);
+  box-shadow: 0 0 28px rgba(72, 234, 255, 0.22);
+  background: rgba(28, 42, 76, 0.85);
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  color: #07101f;
+  background: linear-gradient(135deg, var(--cyan), var(--pink));
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.contact-card strong,
+.contact-card small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.contact-card strong {
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+.contact-card small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ===== MESSAGE FORM ===== */
+.contact-form {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  text-align: left;
+  border: 1px solid rgba(180, 139, 255, 0.35);
+  border-radius: 22px;
+  background: rgba(10, 16, 38, 0.8);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.25);
+}
+
+.contact-form h2 {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
+
+.contact-form h2 span {
+  color: var(--pink);
+}
+
+.form-subtitle {
+  margin-bottom: 25px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-form label {
+  display: block;
+  margin: 18px 0 8px;
+  color: #dce5ff;
+  font-size: 13px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  display: block;
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid rgba(150, 170, 220, 0.28);
+  border-radius: 10px;
+  outline: none;
+  background: rgba(4, 9, 25, 0.85);
+  color: white;
+  font: inherit;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #8795b3;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(72, 234, 255, 0.18);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 22px;
+  padding: 15px;
+  border: 0;
+  border-radius: 10px;
+  color: #07101f;
+  background: linear-gradient(100deg, var(--cyan), #d58cff);
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.submit-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(72, 234, 255, 0.3);
+}
+
+.footer {
+  margin-top: 35px;
+  color: #9ba8c6;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE NAVIGATION ===== */
+@media (max-width: 800px) {
+  .navbar {
+    min-height: 70px;
+    padding: 13px 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 16px;
+    left: 16px;
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+    background: rgba(5, 11, 29, 0.98);
+    border: 1px solid rgba(72, 234, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(18px);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 13px 15px;
+  }
+
+  #contact {
+    padding: 110px 16px 25px;
+  }
+}
+
+@media (max-width: 650px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 22px 18px;
+  }
+
+  h1 {
+    letter-spacing: -1px;
+  }
+
+  .section-tag {
+    letter-spacing: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section id="contact">
+
+  <!-- Replace contactv.mp4 with your video URL if needed -->
+  <video class="contact-video" autoplay muted loop playsinline>
+    <source src="contactv.mp4" type="video/mp4">
+  </video>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" aria-label="Main navigation">
+
+    <a href="index.html" class="nav-logo">
+      <span></span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="certificate.html">Certificates</a></li>
+      <li><a href="#contact" class="active" aria-current="page">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <main class="contact-container">
+
+    <p class="section-tag">✦ GET IN TOUCH ✦</p>
+
+    <h1>Let's <span>Connect</span> 💫</h1>
+
+    <p class="intro">
+      Let's connect and share ideas, collaborate on projects,
+      and explore exciting opportunities!
+    </p>
+
+    <div class="contact-links">
+
+      <a href="https://github.com/priyadharshini-11s"
+         target="_blank" rel="noopener noreferrer"
+         class="contact-card">
+        <span class="contact-icon">⌘</span>
+        <span>
+          <strong>GitHub</strong>
+          <small>Explore my projects ↗</small>
+        </span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/priya-s2001"
+         target="_blank" rel="noopener noreferrer"
+         class="contact-card">
+        <span class="contact-icon">in</span>
+        <span>
+          <strong>LinkedIn</strong>
+          <small>Connect professionally ↗</small>
+        </span>
+      </a>
+
+      <a href="mailto:reshmapriya2001@gmail.com"
+         class="contact-card">
+        <span class="contact-icon">✉</span>
+        <span>
+          <strong>Email Me</strong>
+          <small>reshmapriya2001@gmail.com</small>
+        </span>
+      </a>
+
+    </div>
+
+    <form class="contact-form"
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST">
+
+      <h2>Send Me a Message <span>✦</span></h2>
+
+      <p class="form-subtitle">
+        Have an idea? I'd love to hear from you.
+      </p>
+
+      <label for="name">Your Name</label>
+      <input id="name" name="name" type="text"
+             placeholder="Enter your name"
+             autocomplete="name" required>
+
+      <label for="email">Your Email</label>
+      <input id="email" name="email" type="email"
+             placeholder="Enter your email"
+             autocomplete="email" required>
+
+      <label for="subject">Subject</label>
+      <input id="subject" name="subject" type="text"
+             placeholder="What is this about?" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="5"
+                placeholder="Write your message here..."
+                required></textarea>
+
+      <button class="submit-button" type="submit">
+        Send Message <span>✉</span>
+      </button>
+
+    </form>
+
+    <p class="footer">
+      © 2026 Priyadharshini · Thank you for visiting my portfolio 💙
+    </p>
+
+  </main>
+</section>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("show");
+
+  menuToggle.classList.toggle("open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+});
+
+navLinks.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("show");
+    menuToggle.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+  });
+});
+</script>
+
+</body>
+</html>
